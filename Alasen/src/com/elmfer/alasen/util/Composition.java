@@ -123,6 +123,7 @@ public class Composition {
 		if(timelines.containsKey(timeline)) {
 			
 			if(timelines.get(timeline).hasProperty(prop)) {
+				
 				return timelines.get(timeline).getProperty(prop);
 			}
 		}
