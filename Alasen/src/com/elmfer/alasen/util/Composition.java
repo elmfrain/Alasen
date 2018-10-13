@@ -118,6 +118,29 @@ public class Composition {
 		return null;
 	}
 	
+	public Property getProperty(String timeline, String prop) {
+		
+		if(timelines.containsKey(timeline)) {
+			
+			if(timelines.get(timeline).hasProperty(prop)) {
+				return timelines.get(timeline).getProperty(prop);
+			}
+		}
+		
+		for(GroupedTimelines timelineGroup : groupedTimelines) {
+			
+			if(timelineGroup.hasTimeline(timeline)) {
+				
+				if(timelineGroup.getTimeline(timeline).hasProperty(prop)) {
+					
+					return timelineGroup.getTimeline(timeline).getProperty(prop);
+				}
+			}
+		}
+		
+		return null;
+	}
+	
 	public void tick() {
 		
 		Consumer<Timeline> action = (Timeline tL) -> tL.tick();
