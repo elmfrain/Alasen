@@ -24,7 +24,7 @@ public class GroupedTimelines implements IAct {
 	private boolean currentIsFinished = false;
 	private boolean force = false;
 	
-	public GroupedTimelines(Timeline firstTimeline) {
+	protected GroupedTimelines(Timeline firstTimeline) {
 		
 		timelines.put(firstTimeline.getName(), firstTimeline);
 	}
