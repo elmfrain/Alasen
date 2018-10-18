@@ -7,7 +7,8 @@ import com.elmfer.alasen.util.Timeline;
 
 public class QueuedTimeline implements IAct{
 	
-	private final Timeline timeline;
+	public final Timeline timeline;
+	
 	private final List<Byte> actions = new ArrayList<Byte>();
 	
 	protected QueuedTimeline(Timeline value) {
