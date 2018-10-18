@@ -2,6 +2,12 @@ package com.elmfer.alasen.util;
 
 import java.util.function.Function;
 
+/*
+ * Contains legacy functions for easing
+ * 
+ * @deprecated Functions are not standard. Use {@link #Easing} instead.
+ */
+@Deprecated
 public enum TimeInterpolation {
 	
 	LINEAR(new Function<Double, Double>() {
