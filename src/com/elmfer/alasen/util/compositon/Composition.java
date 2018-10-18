@@ -1,4 +1,4 @@
-package com.elmfer.alasen.util;
+package com.elmfer.alasen.util.compositon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+
+import com.elmfer.alasen.util.Property;
+import com.elmfer.alasen.util.Timeline;
 
 public class Composition {
 	
