@@ -5,7 +5,7 @@ import java.util.function.Function;
 /*
  * Contains legacy functions for easing
  * 
- * @deprecated Functions are not standard. Use {@link #Easing} instead.
+ * @deprecated Functions are not standardized. Use {@link #Easing} instead.
  */
 @Deprecated
 public enum TimeInterpolation {
