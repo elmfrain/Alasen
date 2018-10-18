@@ -11,7 +11,6 @@ public class PropertyF extends Property{
 		
 		super(name);
 		value = 0.0F;
-		
 	}
 	
 	public PropertyF(String name, Float value) {
@@ -24,17 +23,16 @@ public class PropertyF extends Property{
 		
 		super(name, startingValue, endingValue);
 		value = 0.0F;
-		
 	}
 	
 	public PropertyF(String name, Float startingValue, Float endingValue, Function<Double, Double> valueShaderFunc) {
 		
 		super(name, startingValue, endingValue, valueShaderFunc);
 		value = 0.0F;
-		
 	}
 	
 	public void update(double fracTime) {
+		
 		super.update(fracTime);
 		
 		float k2v = nextKeyframe.getValue() != null ? (float) nextKeyframe.getValue() : 0.0F;
@@ -47,13 +45,17 @@ public class PropertyF extends Property{
 	}
 	
 	public void addKeyframes(Keyframe... keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
 	
 	public void addKeyframes(Collection<Keyframe> keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
@@ -67,8 +69,10 @@ public class PropertyF extends Property{
 	private void validateKeyframe(Keyframe keyframe) {
 		
 		if(keyframe.getValue() instanceof Float) {
+			
 			super.addKeyframes(keyframe);
 		}else {
+			
 			super.showTypeError(this);
 		}
 		

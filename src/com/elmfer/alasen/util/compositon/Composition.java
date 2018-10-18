@@ -23,7 +23,9 @@ public class Composition {
 		if(!queuedTimelines.isEmpty()) apply();
 		
 		for(String name : timelines) {
+			
 			if(this.timelines.containsKey(name)) {
+				
 				QueuedTimeline queuedTimeline = new QueuedTimeline(this.timelines.get(name));
 				queuedTimelines.add(queuedTimeline);
 			}
@@ -93,9 +95,12 @@ public class Composition {
 	public void addTimelines(Timeline... timelines) {
 		
 		for(Timeline timeline : timelines) {
+			
 			if(timeline.getName() != null) {
+				
 				sortTimeline(timeline);
 			}else {
+				
 				String name = Integer.toString(this.timelines.size());
 				System.out.println("[!Alasen-Warn!] : " + timeline + " doesn't have a name! Setting it to " + name + ".");
 				sortTimeline(timeline);
@@ -107,13 +112,17 @@ public class Composition {
 	public Property getProperty(String prop) {
 		
 		for(Timeline timeline : timelines.values()) {
+			
 			if(timeline.getProperties().containsKey(prop)) {
+				
 				return timeline.getProperty(prop);
 			}
 		}
 		
 		for(GroupedTimelines timelineGroup : groupedTimelines) {
+			
 			if(timelineGroup.hasProperty(prop)) {
+				
 				return timelineGroup.getProperty(prop);
 			}
 		}
@@ -157,11 +166,14 @@ public class Composition {
 	public Timeline getTimelineCopy(String name) {
 		
 		if(timelines.containsKey(name)) {
+			
 			return new Timeline(timelines.get(name));
 		}
 		
 		for(GroupedTimelines timelineGroup : groupedTimelines) {
+			
 			if(timelineGroup.hasTimeline(name)) {
+				
 				return new Timeline(timelineGroup.getTimeline(name));
 			}
 		}
@@ -172,8 +184,11 @@ public class Composition {
 	private void sortTimeline(Timeline timeline) {
 		
 		for(Property prop : timeline.getProperties().values()) {
+			
 			for(Timeline timeline0 : timelines.values()) {
+				
 				if(timeline0.hasProperty(prop.getName())) {
+					
 					timelines.remove(timeline0.getName());
 					GroupedTimelines group = new GroupedTimelines(timeline0);
 					group.addTimeline(timeline);
@@ -184,7 +199,9 @@ public class Composition {
 		}
 		
 		for(GroupedTimelines timelineGroup : groupedTimelines) {
+			
 			if(timelineGroup.addTimeline(timeline)) {
+				
 				return;
 			}
 		}

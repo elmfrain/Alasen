@@ -8,6 +8,7 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			return t;
 		}
 	}),
@@ -15,6 +16,7 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			return -1 * Math.pow(t, 2) + 2 * t;
 		}
 	}),
@@ -22,6 +24,7 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			return Math.pow(t, 2);
 		}
 	}),
@@ -29,9 +32,12 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			if(t <= 0.5D) {
+				
 				return 2.0D * Math.pow(t, 2);
 			}else {
+				
 				return (-2 * Math.pow(t, 2)) + 4 * t - 1;
 			}
 		}
@@ -40,9 +46,12 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			if(t >= 1.0D) {
+				
 				return 1.0D;
 			}else {
+				
 				return 0.0D;
 			}
 		}
@@ -51,6 +60,7 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			return -1 * Math.pow(t - 1, 4) + 1;
 		}
 	}),
@@ -58,6 +68,7 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			return Math.pow(t, 4);
 		}
 	}),
@@ -65,9 +76,12 @@ public enum TimeInterpolation {
 		
 		@Override
 		public Double apply(Double t) {
+			
 			if(t <= 0.5D) {
+				
 				return 8 * Math.pow(t, 4);
 			}else {
+				
 				return -8 * Math.pow(t - 1, 4) + 1;
 			}
 		}
@@ -76,14 +90,17 @@ public enum TimeInterpolation {
 	private Function<Double, Double> function;
 	
 	TimeInterpolation(Function<Double, Double> func){
+		
 		function = func;
 	}
 	
 	public Function<Double, Double> getFunction() {
+		
 		return function;
 	}
 	
 	public static TimeInterpolation getDefault() {
+		
 		return LINEAR;
 	}
 

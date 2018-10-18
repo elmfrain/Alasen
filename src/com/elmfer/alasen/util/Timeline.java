@@ -69,8 +69,7 @@ public class Timeline {
 		
 		duration = value.duration;
 		
-		name = value.name;
-		
+		name = value.name;	
 	}
 	
 	public void tick() {
@@ -83,6 +82,7 @@ public class Timeline {
 		
 		//Play forward are reversed
 		if(!paused && !stopped) {
+			
 			switch(timelineState) {
 				case FORWARD:
 					currentFracTime += fracTimeTick;
@@ -101,78 +101,65 @@ public class Timeline {
 			stopped = true;
 			paused = false;
 			currentFracTime = 0.0D;
-			
 		}else if(currentFracTime >= 1.0D) {
 			
 			stopped = true;
 			paused = false;
 			currentFracTime = 1.0D;
-			
 		}
 		
 		//Update All properties
 		for(Property property : propertyList.values()) {
 			
 			property.update(currentFracTime);
-			
 		}
 		
 		prevTickTime = currentTickTime;
-		
 	}
 	
 	public Property getProperty(String propName) {
 		
 		return propertyList.get(propName);
-		
 	}
 	
 	public boolean hasProperty(String propName) {
 		
 		return propertyList.containsKey(propName);
-		
 	}
 	
 	public String getName() {
 		
 		return name;
-		
 	}
 	
 	public TimelineState getState() {
 		
 		return timelineState;
-		
 	}
 	
 	public double getFracTime() {
 		
 		return currentFracTime;
-		
 	}
 	
 	public double getTimePos() {
 		
 		return currentFracTime * duration;
-		
 	}
 	
 	public double getSpeed() {
 		
 		return speed;
-		
 	}
 	
 	public boolean isPaused() {
 		
 		return paused;
-		
 	}
 	
 	public boolean hasStopped() {
 		
 		return stopped;
-		
 	}
 	
 	public void addProperties(Property... properties) {
@@ -181,9 +168,7 @@ public class Timeline {
 			
 			prop.update(currentFracTime);
 			propertyList.put(prop.getName() , prop);
-			
 		}
-		
 	}
 	
 	public void addProperties(Collection<Property> properties) {
@@ -192,15 +177,12 @@ public class Timeline {
 			
 			prop.update(currentFracTime);
 			propertyList.put(prop.getName() , prop);
-			
 		}
-		
 	}
 	
 	public void setSpeed(double fracValue) {
 		
 		speed = fracValue;
-		
 	}
 	
 	public void play() {
@@ -209,7 +191,6 @@ public class Timeline {
 		stopped = false;
 		
 		timelineState = TimelineState.FORWARD;
-		
 	}
 	
 	public void rewind() {
@@ -218,7 +199,6 @@ public class Timeline {
 		stopped = false;
 		
 		timelineState = TimelineState.REVERSE;
-		
 	}
 	
 	public void pause() {
@@ -226,26 +206,22 @@ public class Timeline {
 		if(!stopped) {
 			paused = true;
 		}
-		
 	}
 	
 	public void resume() {
 		
 		paused = false;
-		
 	}
 	
 	public void stop() {
 		
 		stopped = true;
 		currentFracTime = 0.0D;
-		
 	}
 	
 	public HashMap<String, Property> getProperties(){
 		
 		return propertyList;
-		
 	}
 	
 	protected Timeline clone() {
