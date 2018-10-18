@@ -15,11 +15,13 @@ public class QueuedTimeline implements IAct{
 		timeline = value;
 	}
 	
+	@Override
 	public void addAction(byte action) {
 		
 		actions.add(action);
 	}
 	
+	@Override
 	public void applyActions() {
 		
 		for(Byte action : actions) {
