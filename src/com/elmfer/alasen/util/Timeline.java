@@ -242,7 +242,7 @@ public class Timeline {
 		
 	}
 	
-	protected HashMap<String, Property> getProperties(){
+	public HashMap<String, Property> getProperties(){
 		
 		return propertyList;
 		
