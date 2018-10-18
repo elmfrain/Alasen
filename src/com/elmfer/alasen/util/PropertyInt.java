@@ -35,6 +35,7 @@ public class PropertyInt extends Property {
 	}
 	
 	public void update(double fracTime) {
+		
 		super.update(fracTime);
 		
 		int k2v = nextKeyframe.getValue() != null ? (int) nextKeyframe.getValue() : 0;
@@ -47,13 +48,17 @@ public class PropertyInt extends Property {
 	}
 	
 	public void addKeyframes(Keyframe... keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
 	
 	public void addKeyframes(Collection<Keyframe> keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
@@ -61,14 +66,15 @@ public class PropertyInt extends Property {
 	public Integer getValue() {
 		
 		return value;
-		
 	}
 	
 	private void validateKeyframe(Keyframe keyframe) {
 		
 		if(keyframe.getValue() instanceof Integer) {
+			
 			super.addKeyframes(keyframe);
 		}else {
+			
 			super.showTypeError(this);
 		}
 		

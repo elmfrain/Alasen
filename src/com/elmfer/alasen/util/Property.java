@@ -25,7 +25,6 @@ public abstract class Property {
 			if(o1.getFracTimeStamp() > o2.getFracTimeStamp()) return 1;
 			
 			return 0;
-			
 		}
 		
 	};
@@ -33,7 +32,6 @@ public abstract class Property {
 	public Property(String name) {
 		
 		this.name = name;
-		
 	}
 	
 	public Property(String name, Number value) {
@@ -63,23 +61,19 @@ public abstract class Property {
 		if(keyframeList.size() == 0) {
 			
 			return;
-			
 		}
 		
 		getKeyframes(fracTime);
-		
 	}
 	
 	public Number getValue() {
 		
 		return value;
-		
 	}
 	
 	public String getName() {
 		
 		return name;
-		
 	}
 	
 	public void addKeyframes(Keyframe... keyframes) {
@@ -87,11 +81,9 @@ public abstract class Property {
 		for(Keyframe keyframe : keyframes) {
 			
 			validateKeyframe(keyframe);
-			
 		}
 		
 		sortKeyframes();
-		
 	}
 	
 	public void addKeyframes(Collection<Keyframe> keyframes) {
@@ -99,37 +91,39 @@ public abstract class Property {
 		for(Keyframe keyframe : keyframes) {
 			
 			validateKeyframe(keyframe);
-			
 		}
 		
 		sortKeyframes();
-		
 	}
 	
 	public static void showTypeError(Property property) {
 		
 		System.out.println("[!Alasen-Error!] : " + property + " ,keyframe value must be the same type as the property type!");
-	
 	}
 	
 	private void getKeyframes(double fracTime) {
 		
 		if(!keyframeList.isEmpty()) {
+			
 			for(int i = 0; i < keyframeList.size(); i++) {
 				
 				if(keyframeList.size() - 1 == i || keyframeList.size() == 1) {
+					
 					currentKeyframe = keyframeList.get(i);
 					nextKeyframe = new Keyframe(2.0D, currentKeyframe.getValue());
 					break;
 				}else if(keyframeList.get(i).getFracTimeStamp() <= fracTime && fracTime < keyframeList.get(i + 1).getFracTimeStamp()) {
+					
 					currentKeyframe = keyframeList.get(i);
 					nextKeyframe = keyframeList.get(i + 1);
 					break;
 				}else if(fracTime < keyframeList.get(i).getFracTimeStamp()){
+					
 					currentKeyframe = new Keyframe(0.0D, keyframeList.get(0).getValue());
 					nextKeyframe = keyframeList.get(0);
 					break;
 				}else {
+					
 					currentKeyframe = new Keyframe(0.0D, null);
 					nextKeyframe = new Keyframe(1.0D, null);
 				}
@@ -142,23 +136,26 @@ public abstract class Property {
 	private void validateKeyframe(Keyframe keyframe) {
 		
 		if(keyframeList.size() == 0) {
+			
 			keyframeList.add(keyframe);
 		}else {
+			
 			for(int i = 0; i < keyframeList.size(); i++) {
+				
 				if(keyframeList.get(i).getFracTimeStamp() == keyframe.getFracTimeStamp()) {
+					
 					keyframeList.set(i, keyframe);
 				}else {
+					
 					keyframeList.add(keyframe);
 				}
 			}
 		}
-		
 	}
 	
 	private void sortKeyframes() {
 		
 		keyframeList.sort(compare);
-		
 	}
 	
 }

@@ -11,7 +11,6 @@ public class PropertyLong extends Property{
 		
 		super(name);
 		value = 0L;
-		
 	}
 	
 	public PropertyLong(String name, Long value) {
@@ -24,17 +23,16 @@ public class PropertyLong extends Property{
 		
 		super(name, startingValue, endingValue);
 		value = 0L;
-		
 	}
 	
 	public PropertyLong(String name, Long startingValue, Long endingValue, Function<Double, Double> valueShaderFunc) {
 		
 		super(name, startingValue, endingValue, valueShaderFunc);
 		value = 0L;
-		
 	}
 	
 	public void update(double fracTime) {
+		
 		super.update(fracTime);
 		
 		float k2v = nextKeyframe.getValue() != null ? (long) nextKeyframe.getValue() : 0L;
@@ -47,26 +45,33 @@ public class PropertyLong extends Property{
 	}
 	
 	public void addKeyframes(Keyframe... keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
 	
 	public void addKeyframes(Collection<Keyframe> keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
 	
 	public Long getValue() {
+		
 		return value;
 	}
 	
 	private void validateKeyframe(Keyframe keyframe) {
 		
 		if(keyframe.getValue() instanceof Long) {
+			
 			super.addKeyframes(keyframe);
 		}else {
+			
 			super.showTypeError(this);
 		}
 		

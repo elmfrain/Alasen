@@ -13,7 +13,6 @@ public class Keyframe {
 		this.fracTimeStamp = fracTimeStamp;
 		this.value = value;
 		this.timeShader = TimeInterpolation.getDefault().getFunction();
-		
 	}
 	
 	public Keyframe(double fracTimeStamp, Number value, Function<Double, Double> timeShaderFunc) {
@@ -21,25 +20,21 @@ public class Keyframe {
 		this.fracTimeStamp = fracTimeStamp;
 		this.value = value;
 		this.timeShader = timeShaderFunc;
-		
 	}
 	
 	public double getFracTimeStamp() {
 		
 		return fracTimeStamp;
-		
 	}
 	
 	public Function<Double, Double> getValueShader() {
 		
 		return timeShader;
-		
 	}
 	
 	public Number getValue() {
 		
 		return value;
-		
 	}
 
 }

@@ -11,7 +11,6 @@ public class PropertyD extends Property{
 		
 		super(name);
 		value = 0.0D;
-		
 	}
 	
 	public PropertyD(String name, Double value) {
@@ -24,17 +23,16 @@ public class PropertyD extends Property{
 		
 		super(name, startingValue, endingValue);
 		value = 0.0D;
-		
 	}
 	
 	public PropertyD(String name, Double startingValue, Double endingValue, Function<Double, Double> valueShaderFunc) {
 		
 		super(name, startingValue, endingValue, valueShaderFunc);
 		value = 0.0D;
-		
 	}
 	
 	public void update(double fracTime) {
+		
 		super.update(fracTime);
 		
 		double k2v = nextKeyframe.getValue() != null ? (double) nextKeyframe.getValue() : 0.0D;
@@ -47,13 +45,17 @@ public class PropertyD extends Property{
 	}
 	
 	public void addKeyframes(Keyframe... keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
 	
 	public void addKeyframes(Collection<Keyframe> keyframes) {
+		
 		for(Keyframe keyframe : keyframes) {
+			
 			validateKeyframe(keyframe);
 		}
 	}
@@ -61,14 +63,15 @@ public class PropertyD extends Property{
 	public Double getValue() {
 		
 		return value;
-		
 	}
 	
 	private void validateKeyframe(Keyframe keyframe) {
 		
 		if(keyframe.getValue() instanceof Double) {
+			
 			super.addKeyframes(keyframe);
 		}else {
+			
 			super.showTypeError(this);
 		}
 		
