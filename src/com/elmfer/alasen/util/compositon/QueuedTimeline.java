@@ -17,9 +17,30 @@ public class QueuedTimeline implements IAct{
 	
 	public void addAction(byte action) {
 		
+		actions.add(action);
 	}
 	
-	public void applyAction() {
+	public void applyActions() {
 		
+		for(Byte action : actions) {
+			
+			switch(action) {
+				case 1:
+					timeline.play();
+					break;
+				case 2:
+					timeline.rewind();
+					break;
+				case 3:
+					timeline.resume();
+					break;
+				case 4:
+					timeline.pause();
+					break;
+				case 5:
+					timeline.stop();
+					break;
+			}
+		}
 	}
 }
