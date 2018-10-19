@@ -15,14 +15,14 @@ public class GroupedTimelines implements IAct {
 
 	private final Map<String, Timeline> timelines = new HashMap<String, Timeline>();
 	private final List<QueuedTimeline> queuedTimelines = new ArrayList<QueuedTimeline>();
+	private final List<Timeline> lastestTimelines = new ArrayList<Timeline>();
 	
 	private QueuedTimeline forcedTimeline = null;
 	
-	private Timeline lastestTimeline = null;
-	
 	private int currentQueueBuffer = 0;
-	private boolean currentIsFinished = false;
-	private boolean force = false;
+	private boolean currentIsDone = false;
+	private boolean forcedIsActive = false;
+	private boolean forcedIsDone = true;
 	
 	protected GroupedTimelines(Timeline firstTimeline) {
 		
@@ -32,8 +32,11 @@ public class GroupedTimelines implements IAct {
 	public boolean addTimeline(Timeline timeline) {
 		
 		for(Property prop : timeline.getProperties().values()) {
+			
 			for(Timeline timeline0 : timelines.values()) {
+				
 				if(timeline0.hasProperty(prop.getName())) {
+					
 					timelines.put(timeline.getName(), timeline);
 					return true;
 				}
@@ -45,7 +48,9 @@ public class GroupedTimelines implements IAct {
 	public void queue(Collection<String> names) {
 		
 		for(String name : names) {
+			
 			if(timelines.containsKey(name)) {
+				
 				queuedTimelines.add(new QueuedTimeline(timelines.get(name)));
 				currentQueueBuffer++;
 			}
@@ -57,7 +62,8 @@ public class GroupedTimelines implements IAct {
 		if(timelines.containsKey(timeline)) {
 			
 			forcedTimeline = new QueuedTimeline(timelines.get(timeline));
-			force = true;
+			forcedIsActive = true;
+			forcedIsDone = false;
 		}
 	}
 	
@@ -74,7 +80,7 @@ public class GroupedTimelines implements IAct {
 	
 	public void addAction(byte action) {
 		
-		if(force) {
+		if(forcedIsActive) {
 			
 			forcedTimeline.addAction(action);
 		}else if(currentQueueBuffer > 0){
@@ -90,22 +96,22 @@ public class GroupedTimelines implements IAct {
 		
 		currentQueueBuffer = 0;
 		
-		if(force) {
+		if(forcedIsActive) {
 			
 			forcedTimeline.applyActions();
-			lastestTimeline = forcedTimeline.timeline;
+			sortLastestTimelines(forcedTimeline.timeline);
 			queuedTimelines.clear();
-			force = false;
+			forcedIsActive = false;
 		}
 	}
 	
 	public Property getProperty(String prop) {
 		
-		if(lastestTimeline != null) {
+		for(Timeline timeline : lastestTimelines) {
 			
-			if(lastestTimeline.hasProperty(prop)) {
+			if(timeline.hasProperty(prop)) {
 				
-				return lastestTimeline.getProperty(prop);
+				return timeline.getProperty(prop);
 			}
 		}
 		
@@ -136,8 +142,10 @@ public class GroupedTimelines implements IAct {
 	public boolean hasTimeline(String name) {
 		
 		if(timelines.containsKey(name)) {
+			
 			return true;
 		}else {
+			
 			return false;
 		}
 	}
@@ -160,43 +168,59 @@ public class GroupedTimelines implements IAct {
 		timelines.values().forEach(action);
 	}
 	
+	private void sortLastestTimelines(Timeline timeline) {
+		
+		Predicate<Timeline> filter = p -> p == timeline;
+		lastestTimelines.removeIf(filter);
+		lastestTimelines.add(0, timeline);
+	}
+	
 	private void update() {
 		
-		if(!queuedTimelines.isEmpty()) {
+		if(forcedTimeline != null) {
+			
+			if(forcedTimeline.timeline.hasStopped()) {
+				
+				forcedIsDone = true;
+			}
+		}
+		
+		if(!queuedTimelines.isEmpty() && forcedIsDone) {
 			
 			QueuedTimeline currentTimeline = queuedTimelines.get(0);
 			
-			if(currentTimeline.timeline.hasStopped() && !currentIsFinished) {
+			if(currentTimeline.timeline.hasStopped() && !currentIsDone) {
 				
 				currentTimeline.applyActions();
-				lastestTimeline = currentTimeline.timeline;
+				sortLastestTimelines(currentTimeline.timeline);
 				
-				currentIsFinished = true;
+				currentIsDone = true;
 			}
 			
-			if(currentTimeline.timeline.hasStopped() && currentIsFinished) {
+			if(currentTimeline.timeline.hasStopped() && currentIsDone) {
 				
 				queuedTimelines.remove(0);
-				currentIsFinished = false;
+				currentIsDone = false;
 			}
 			
 			if(!queuedTimelines.isEmpty()) {
 				
 				currentTimeline = queuedTimelines.get(0);
 				
-				if(currentTimeline.timeline.hasStopped() && !currentIsFinished) {
+				if(currentTimeline.timeline.hasStopped() && !currentIsDone) {
 					currentTimeline.applyActions();
 					
-					lastestTimeline = currentTimeline.timeline;
+					sortLastestTimelines(currentTimeline.timeline);
 					
-					currentIsFinished = true;
+					currentIsDone = true;
 				}
 			}else {
 				
-				currentIsFinished = false;
+				currentIsDone = false;
 			}
 		}else {
-			currentIsFinished = false;
+			
+			currentIsDone = false;
 		}
 		
 	}
