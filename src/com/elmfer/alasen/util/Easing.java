@@ -190,8 +190,33 @@ public enum Easing {
 
 		@Override
 		public Double apply(Double t) {
-			// TODO Auto-generated method stub
-			return null;
+			
+			return 1.0D - Math.sqrt(1.0D - Math.pow(t, 2));
+		}
+	}),
+	OUT_CIRC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.sqrt(1.0D - Math.pow(t - 1.0D, 2.0D));
+		}
+	}),
+	INOUT_CIRC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t < 0.5D) {
+				
+				return 0.5D - Math.sqrt(0.25D - Math.pow(t, 2));
+			}else if(t == 0.5D) {
+				
+				return 0.5D;
+			}else {
+				
+				return Math.sqrt(0.25D - Math.pow(t - 1.0D, 2)) + 0.5D;
+			}
 		}
 	});
 	
