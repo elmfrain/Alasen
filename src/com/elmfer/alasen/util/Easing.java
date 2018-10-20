@@ -155,6 +155,44 @@ public enum Easing {
 				return 16.0D * Math.pow(t - 1.0D, 5.0D) + 1.0D;
 			}
 		}
+	}),
+	IN_EXPO(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.pow(1000.0D, t - 1.0D);
+		}
+	}),
+	OUT_EXPO(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return -1.0D * Math.pow(0.001D, t) + 1.0D;
+		}
+	}),
+	INOUT_EXPO(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t <= 0.5D) {
+				
+				return (Math.pow(1000000.0D, t - 0.5D)) / 2.0D;
+			}else {
+				
+				return -1.0D / (2 * Math.pow(1000000.0D, t - 0.5D)) + 1.0D;
+			}
+		}
+	}),
+	IN_CIRC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	});
 	
 	private final Function<Double, Double> function;
