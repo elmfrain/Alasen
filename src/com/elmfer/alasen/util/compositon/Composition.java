@@ -30,13 +30,13 @@ public class Composition {
 			}
 		}
 		
-		Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.queue(Arrays.asList(timelines));
+		final Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.queue(Arrays.asList(timelines));
 		groupedTimelines.forEach(action);
 	}
 	
 	public void force(String timeline) {
 		
-		Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.force(timeline);
+		final Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.force(timeline);
 		groupedTimelines.forEach(action);
 	}
 	
@@ -44,16 +44,16 @@ public class Composition {
 		
 		queuedTimelines.clear();
 		
-		Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.clearQueue();
+		final Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.clearQueue();
 		groupedTimelines.forEach(action);
 	}
 	
 	public void removeFromQueue(String... strings) {
 		
-		Predicate<QueuedTimeline> filter = p -> Arrays.asList(strings).contains(p.timeline.getName());
+		final Predicate<QueuedTimeline> filter = p -> Arrays.asList(strings).contains(p.timeline.getName());
 		queuedTimelines.removeIf(filter);
 		
-		Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.removeFromQueue(Arrays.asList(strings));
+		final Consumer<GroupedTimelines> action = (GroupedTimelines gT) -> gT.removeFromQueue(Arrays.asList(strings));
 		groupedTimelines.forEach(action);
 	}
 	
@@ -84,7 +84,7 @@ public class Composition {
 	
 	public void apply() {
 		
-		Consumer<IAct> action = (IAct actor) -> actor.applyActions();
+		final Consumer<IAct> action = (IAct actor) -> actor.applyActions();
 		
 		queuedTimelines.forEach(action);
 		groupedTimelines.forEach(action);
@@ -155,10 +155,10 @@ public class Composition {
 	
 	public void tick() {
 		
-		Consumer<Timeline> action = (Timeline tL) -> tL.tick();
+		final Consumer<Timeline> action = (Timeline tL) -> tL.tick();
 		timelines.values().forEach(action);
 		
-		Consumer<GroupedTimelines> gAction = (GroupedTimelines gT) -> gT.tick();
+		final Consumer<GroupedTimelines> gAction = (GroupedTimelines gT) -> gT.tick();
 		groupedTimelines.forEach(gAction);
 	}
 	
@@ -210,7 +210,7 @@ public class Composition {
 	
 	private void action(byte id) {
 		
-		Consumer<IAct> action = (IAct actor) -> actor.addAction(id);
+		final Consumer<IAct> action = (IAct actor) -> actor.addAction(id);
 		queuedTimelines.forEach(action);
 		groupedTimelines.forEach(action);
 	}
