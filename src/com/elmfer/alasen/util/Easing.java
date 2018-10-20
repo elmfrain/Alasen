@@ -59,7 +59,7 @@ public enum Easing {
 			
 			if(t <= 0.5D) {
 				
-				return 2 * Math.pow(t, 2);
+				return 2.0D * Math.pow(t, 2);
 			}else {
 				
 				return -2.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
@@ -93,6 +93,52 @@ public enum Easing {
 			}else {
 				
 				return Math.pow(t - 1.0D, 3.0D) + 1.0D;
+			}
+		}
+	}),
+	IN_QUART(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.pow(t, 4.0D);
+		}
+	}),
+	OUT_QUART(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return -1.0D * Math.pow(t - 1.0D, 4.0D) + 1.0D;
+		}
+	}),
+	IN_QUINT(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.pow(t, 5.0D);
+		}
+	}),
+	OUT_QUINT(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.pow(t - 1.0D, 5.0D) + 1.0D;
+		}
+	}),
+	INOUT_QUINT(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t <= 0.5D) {
+				
+				return 16.0D * Math.pow(t, 5.0D);
+			}else {
+				
+				return 16.0D * Math.pow(t - 1.0D, 5.0D) + 1.0D;
 			}
 		}
 	});
