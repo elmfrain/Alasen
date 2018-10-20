@@ -49,7 +49,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return -1.0D * Math.pow(t, 2.0D) + 2.0D * t;
+			return -1.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
 		}
 	}),
 	INOUT_QUAD(new Function<Double, Double>(){
@@ -62,7 +62,37 @@ public enum Easing {
 				return 2 * Math.pow(t, 2);
 			}else {
 				
-				return -2.0D * Math.pow(t, 2.0D) - 4.0D * t - 1.0D;
+				return -2.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
+			}
+		}
+	}),
+	IN_CUBIC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.pow(t , 3.0D);
+		}
+	}),
+	OUT_CUBIC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.pow(t - 1.0D, 3.0D) + 1.0D;
+		}
+	}),
+	INOUT_CUBIC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t <= 0.5D) {
+				
+				return Math.pow(t, 3.0D);
+			}else {
+				
+				return Math.pow(t - 1.0D, 3.0D) + 1.0D;
 			}
 		}
 	});
