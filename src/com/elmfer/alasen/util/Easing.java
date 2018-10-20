@@ -89,10 +89,10 @@ public enum Easing {
 			
 			if(t <= 0.5D) {
 				
-				return Math.pow(t, 3.0D);
+				return 4.0D * Math.pow(t, 3.0D);
 			}else {
 				
-				return Math.pow(t - 1.0D, 3.0D) + 1.0D;
+				return 4.0D * Math.pow(t - 1.0D, 3.0D) + 1.0D;
 			}
 		}
 	}),
@@ -110,6 +110,20 @@ public enum Easing {
 		public Double apply(Double t) {
 			
 			return -1.0D * Math.pow(t - 1.0D, 4.0D) + 1.0D;
+		}
+	}),
+	INOUT_QUART(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t <= 0.5D) {
+				
+				return 8.0D * Math.pow(t, 4.0D);
+			}else {
+				
+				return -8.0D * Math.pow(t - 1.0D, 4.0D) + 1.0D;
+			}
 		}
 	}),
 	IN_QUINT(new Function<Double, Double>(){
