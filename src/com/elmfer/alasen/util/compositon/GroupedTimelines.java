@@ -74,7 +74,7 @@ public class GroupedTimelines implements IAct {
 	
 	public void removeFromQueue(Collection<String> timelines) {
 		
-		Predicate<QueuedTimeline> filter = p -> timelines.contains(p.timeline.getName());
+		final Predicate<QueuedTimeline> filter = p -> timelines.contains(p.timeline.getName());
 		queuedTimelines.removeIf(filter);
 	}
 	
@@ -164,13 +164,13 @@ public class GroupedTimelines implements IAct {
 		
 		update();
 		
-		Consumer<Timeline> action = (Timeline tL) -> tL.tick();
+		final Consumer<Timeline> action = (Timeline tL) -> tL.tick();
 		timelines.values().forEach(action);
 	}
 	
 	private void sortLastestTimelines(Timeline timeline) {
 		
-		Predicate<Timeline> filter = p -> p == timeline;
+		final Predicate<Timeline> filter = p -> p == timeline;
 		lastestTimelines.removeIf(filter);
 		lastestTimelines.add(0, timeline);
 	}
