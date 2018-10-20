@@ -242,6 +242,36 @@ public enum Easing {
 				return Math.sqrt(0.25D - Math.pow(t - 1.0D, 2)) + 0.5D;
 			}
 		}
+	}),
+	IN_BACK(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return 2.0D * Math.pow(t, 4.0D) - Math.pow(t, 2.0D);
+		}
+	}),
+	OUT_BACK(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return -2.0D * Math.pow(t - 1.0D, 4.0D) + Math.pow(t - 1.0D, 2.0D) + 1.0D;
+		}
+	}),
+	INOUT_BACK(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t <= 0.5D) {
+				
+				return 16.0D * Math.pow(t - 1.0D, 4.0D) - 2.0D * Math.pow(t - 1.0D, 2.0D);
+			}else {
+				
+				return -16.0D * Math.pow(t - 1.0D, 4.0D) + 2.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
+			}
+		}
 	});
 	
 	private final Function<Double, Double> function;
