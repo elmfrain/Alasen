@@ -207,16 +207,20 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t < 0.5D) {
+			if(t <= 0.0D) {
+				
+				return 0.0D;
+			}else if(t < 0.5D) {
 				
 				return 0.5D - Math.sqrt(0.25D - Math.pow(t, 2));
-			}else if(t == 0.5D) {
+			}else if(t >= 1.0D) {
 				
-				return 0.5D;
+				return 1.0D;
 			}else {
 				
 				return Math.sqrt(0.25D - Math.pow(t - 1.0D, 2)) + 0.5D;
 			}
+			
 		}
 	});
 	
