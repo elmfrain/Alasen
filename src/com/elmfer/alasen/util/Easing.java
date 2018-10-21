@@ -303,6 +303,84 @@ public enum Easing {
 			}
 		}
 		
+	}),
+	IN_BOUNCE(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			final double m = (-400.0 / 49.0);
+			
+			if(t <= 0.1) {
+				
+				return m * t * (t - 0.1);
+			}else if(t <= 0.3) {
+				
+				return m * (t - 0.1) * (t - 0.3);
+			}else if(t <= 0.65) {
+				
+				return m * (t - 0.3) * (t - 0.65);
+			}else {
+				
+				return m * (t - 0.65) * (t - 1.35);
+			}
+		}
+	}),
+	OUT_BOUNCE(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			final double m = (400.0 / 49.0);
+			
+			if(t <= 0.35) {
+				
+				return m * (t + 0.35) * (t - 0.35);
+			}else if(t <= 0.7) {
+				
+				return m * (t - 0.35) * (t - 0.7);
+			}else if(t <= 0.9) {
+				
+				return m * (t - 0.7) * (t - 0.9);
+			}else {
+				
+				return m * (t - 0.9) * (t - 1.0);
+			}
+		}
+	}),
+	INOUT_BOUNCE(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			final double m = (800.0 / 49.0);
+			
+			if(t <= 0.5) {
+				
+				return -m * t * (t - 0.5);
+			}else if(t <= 0.15) {
+				
+				return -m * (t - 0.5) * (t - 0.15);
+			}else if(t <= 0.325) {
+				
+				return -m * (t - 0.15) * (t - 0.325);
+			}else if(t <= 0.5) {
+				
+				return -m * (t - 0.325) * (t - 0.675);
+			}else if (t <= 0.675) {
+				
+				return m * (t - 0.325) * (t - 0.675) + 1.0;
+			}else if (t <= 0.85) {
+				
+				return m * (t - 0.675) * (t - 0.85) + 1.0;
+			}else if (t <= 0.95){
+				
+				return m * (t - 0.85) * (t - 0.95) + 1.0;
+			}else {
+				
+				return m * (t - 0.95) * (t - 1.0) + 1.0;
+			}
+		}
 	});
 	
 	private final Function<Double, Double> function;
