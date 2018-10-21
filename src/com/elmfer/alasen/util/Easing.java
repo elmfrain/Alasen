@@ -286,7 +286,7 @@ public enum Easing {
 			
 			if(t <= 0.5D) {
 				
-				return 16.0 * Math.pow(t - 1.0, 4.0) - 2.0 * Math.pow(t - 1.0, 2.0);
+				return 16.0 * Math.pow(t, 4.0) - 2.0 * Math.pow(t, 2.0);
 			}else {
 				
 				return -16.0 * Math.pow(t - 1.0, 4.0) + 2.0 * Math.pow(t - 1.0, 2.0) + 1.0;
