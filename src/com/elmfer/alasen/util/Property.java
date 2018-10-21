@@ -49,11 +49,11 @@ public abstract class Property {
 		
 	}
 	
-	public Property(String name, Number startingValue, Number endingValue, Function<Double, Double> valueShaderFunc) {
+	public Property(String name, Number startingValue, Number endingValue, Function<Double, Double> easingFunc) {
 		
 		this.name = name;
 		
-		addKeyframes(new Keyframe(0.0D, startingValue, valueShaderFunc), new Keyframe(1.0D, endingValue));
+		addKeyframes(new Keyframe(0.0D, startingValue, easingFunc), new Keyframe(1.0D, endingValue));
 	}
 	
 	public void update(double fracTime) {
