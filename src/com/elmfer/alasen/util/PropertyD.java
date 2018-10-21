@@ -25,9 +25,9 @@ public class PropertyD extends Property{
 		value = 0.0D;
 	}
 	
-	public PropertyD(String name, Double startingValue, Double endingValue, Function<Double, Double> valueShaderFunc) {
+	public PropertyD(String name, Double startingValue, Double endingValue, Function<Double, Double> easingFunc) {
 		
-		super(name, startingValue, endingValue, valueShaderFunc);
+		super(name, startingValue, endingValue, easingFunc);
 		value = 0.0D;
 	}
 	

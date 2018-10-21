@@ -27,9 +27,9 @@ public class PropertyInt extends Property {
 		
 	}
 	
-	public PropertyInt(String name, Integer startingValue, Integer endingValue, Function<Double, Double> valueShaderFunc) {
+	public PropertyInt(String name, Integer startingValue, Integer endingValue, Function<Double, Double> easingFunc) {
 		
-		super(name, startingValue, endingValue, valueShaderFunc);
+		super(name, startingValue, endingValue, easingFunc);
 		value = 0;
 		
 	}

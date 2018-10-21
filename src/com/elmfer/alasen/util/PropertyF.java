@@ -25,9 +25,9 @@ public class PropertyF extends Property{
 		value = 0.0F;
 	}
 	
-	public PropertyF(String name, Float startingValue, Float endingValue, Function<Double, Double> valueShaderFunc) {
+	public PropertyF(String name, Float startingValue, Float endingValue, Function<Double, Double> easingFunc) {
 		
-		super(name, startingValue, endingValue, valueShaderFunc);
+		super(name, startingValue, endingValue, easingFunc);
 		value = 0.0F;
 	}
 	

@@ -25,9 +25,9 @@ public class PropertyLong extends Property{
 		value = 0L;
 	}
 	
-	public PropertyLong(String name, Long startingValue, Long endingValue, Function<Double, Double> valueShaderFunc) {
+	public PropertyLong(String name, Long startingValue, Long endingValue, Function<Double, Double> easingFunc) {
 		
-		super(name, startingValue, endingValue, valueShaderFunc);
+		super(name, startingValue, endingValue, easingFunc);
 		value = 0L;
 	}
 	
