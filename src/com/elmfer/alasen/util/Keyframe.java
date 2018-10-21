@@ -15,11 +15,11 @@ public class Keyframe {
 		this.timeShader = Easing.getDefault().getFunction();
 	}
 	
-	public Keyframe(double fracTimeStamp, Number value, Function<Double, Double> timeShaderFunc) {
+	public Keyframe(double fracTimeStamp, Number value, Function<Double, Double> easingFunc) {
 		
 		this.fracTimeStamp = fracTimeStamp;
 		this.value = value;
-		this.timeShader = timeShaderFunc;
+		this.timeShader = easingFunc;
 	}
 	
 	public Keyframe(double fracTimeStamp, Number value, Easing easingEnum) {
