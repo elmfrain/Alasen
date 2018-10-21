@@ -17,7 +17,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.sin((Math.PI * t - Math.PI) / 2.0D);
+			return Math.sin((Math.PI * t - Math.PI) / 2.0);
 		}
 	}),
 	OUT_SINE(new Function<Double, Double>(){
@@ -25,7 +25,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.sin((Math.PI * t) / 2.0D);
+			return Math.sin((Math.PI * t) / 2.0);
 		}
 	}),
 	INOUT_SINE(new Function<Double, Double>(){
@@ -33,7 +33,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return (Math.sin(Math.PI * t - (Math.PI) / 2.0D)) / 2.0D + 0.5D;
+			return (Math.sin(Math.PI * t - (Math.PI) / 2.0)) / 2.0 + 0.5;
 		}
 	}),
 	IN_QUAD(new Function<Double, Double>(){
@@ -41,7 +41,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.pow(t, 2.0D);
+			return Math.pow(t, 2.0);
 		}
 	}),
 	OUT_QUAD(new Function<Double, Double>(){
@@ -49,7 +49,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return -1.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
+			return -1.0 * Math.pow(t - 1.0, 2.0) + 1.0;
 		}
 	}),
 	INOUT_QUAD(new Function<Double, Double>(){
@@ -57,12 +57,12 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.5D) {
+			if(t <= 0.5) {
 				
-				return 2.0D * Math.pow(t, 2);
+				return 2.0 * Math.pow(t, 2.0);
 			}else {
 				
-				return -2.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
+				return -2.0 * Math.pow(t - 1.0, 2.0) + 1.0;
 			}
 		}
 	}),
@@ -71,7 +71,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.pow(t , 3.0D);
+			return Math.pow(t , 3.0);
 		}
 	}),
 	OUT_CUBIC(new Function<Double, Double>(){
@@ -79,7 +79,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.pow(t - 1.0D, 3.0D) + 1.0D;
+			return Math.pow(t - 1.0, 3.0) + 1.0;
 		}
 	}),
 	INOUT_CUBIC(new Function<Double, Double>(){
@@ -87,12 +87,12 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.5D) {
+			if(t <= 0.5) {
 				
-				return 4.0D * Math.pow(t, 3.0D);
+				return 4.0 * Math.pow(t, 3.0);
 			}else {
 				
-				return 4.0D * Math.pow(t - 1.0D, 3.0D) + 1.0D;
+				return 4.0 * Math.pow(t - 1.0, 3.0) + 1.0;
 			}
 		}
 	}),
@@ -101,7 +101,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.pow(t, 4.0D);
+			return Math.pow(t, 4.0);
 		}
 	}),
 	OUT_QUART(new Function<Double, Double>(){
@@ -109,7 +109,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return -1.0D * Math.pow(t - 1.0D, 4.0D) + 1.0D;
+			return -1.0 * Math.pow(t - 1.0, 4.0) + 1.0;
 		}
 	}),
 	INOUT_QUART(new Function<Double, Double>(){
@@ -117,12 +117,12 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.5D) {
+			if(t <= 0.5) {
 				
-				return 8.0D * Math.pow(t, 4.0D);
+				return 8.0 * Math.pow(t, 4.0);
 			}else {
 				
-				return -8.0D * Math.pow(t - 1.0D, 4.0D) + 1.0D;
+				return -8.0 * Math.pow(t - 1.0, 4.0) + 1.0;
 			}
 		}
 	}),
@@ -131,7 +131,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.pow(t, 5.0D);
+			return Math.pow(t, 5.0);
 		}
 	}),
 	OUT_QUINT(new Function<Double, Double>(){
@@ -139,7 +139,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.pow(t - 1.0D, 5.0D) + 1.0D;
+			return Math.pow(t - 1.0, 5.0) + 1.0;
 		}
 	}),
 	INOUT_QUINT(new Function<Double, Double>(){
@@ -147,12 +147,12 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.5D) {
+			if(t <= 0.5) {
 				
-				return 16.0D * Math.pow(t, 5.0D);
+				return 16.0 * Math.pow(t, 5.0);
 			}else {
 				
-				return 16.0D * Math.pow(t - 1.0D, 5.0D) + 1.0D;
+				return 16.0 * Math.pow(t - 1.0, 5.0) + 1.0;
 			}
 		}
 	}),
@@ -161,7 +161,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.pow(1000.0D, t - 1.0D);
+			return Math.pow(1000.0, t - 1.0);
 		}
 	}),
 	OUT_EXPO(new Function<Double, Double>(){
@@ -169,7 +169,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return -1.0D * Math.pow(0.001D, t) + 1.0D;
+			return -1.0 * Math.pow(0.001, t) + 1.0;
 		}
 	}),
 	INOUT_EXPO(new Function<Double, Double>(){
@@ -177,12 +177,12 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.5D) {
+			if(t <= 0.5) {
 				
-				return (Math.pow(1000000.0D, t - 0.5D)) / 2.0D;
+				return (Math.pow(1000000.0, t - 0.5)) / 2.0;
 			}else {
 				
-				return -1.0D / (2 * Math.pow(1000000.0D, t - 0.5D)) + 1.0D;
+				return -1.0 / (2.0 * Math.pow(1000000.0, t - 0.5)) + 1.0;
 			}
 		}
 	}),
@@ -191,15 +191,15 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.0D) {
+			if(t <= 0.0) {
 				
-				return 0.0D;
-			}else if (t >= 1.0D) {
+				return 0.0;
+			}else if (t >= 1.0) {
 				
-				return 1.0D;
+				return 1.0;
 			}else {
 				
-				return 1.0D - Math.sqrt(1.0D - Math.pow(t, 2));
+				return 1.0 - Math.sqrt(1.0 - Math.pow(t, 2.0));
 			}
 		}
 	}),
@@ -208,15 +208,15 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.0D) {
+			if(t <= 0.0) {
 				
-				return 0.0D;
-			}else if (t >= 1.0D) {
+				return 0.0;
+			}else if (t >= 1.0) {
 				
-				return 1.0D;
+				return 1.0;
 			}else {
 				
-				return Math.sqrt(1.0D - Math.pow(t - 1.0D, 2.0D));
+				return Math.sqrt(1.0 - Math.pow(t - 1.0, 2.0));
 			}
 		}
 	}),
@@ -225,21 +225,21 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.0D) {
+			if(t <= 0.0) {
 				
-				return 0.0D;
-			}else if(t >= 1.0D) {
+				return 0.0;
+			}else if(t >= 1.0) {
 				
-				return 1.0D;
-			}else if(t == 0.5D) {
+				return 1.0;
+			}else if(t == 0.5) {
 				
-				return 0.5D;
-			}else if(t < 0.5D) {
+				return 0.5;
+			}else if(t < 0.5) {
 				
-				return 0.5D - Math.sqrt(0.25D - Math.pow(t, 2));
+				return 0.5 - Math.sqrt(0.25 - Math.pow(t, 2.0));
 			}else {
 				
-				return Math.sqrt(0.25D - Math.pow(t - 1.0D, 2)) + 0.5D;
+				return Math.sqrt(0.25 - Math.pow(t - 1.0, 2.0)) + 0.5;
 			}
 		}
 	}),
@@ -248,7 +248,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return 2.0D * Math.pow(t, 4.0D) - Math.pow(t, 2.0D);
+			return 2.0 * Math.pow(t, 4.0) - Math.pow(t, 2.0);
 		}
 	}),
 	OUT_BACK(new Function<Double, Double>(){
@@ -256,7 +256,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return -2.0D * Math.pow(t - 1.0D, 4.0D) + Math.pow(t - 1.0D, 2.0D) + 1.0D;
+			return -2.0 * Math.pow(t - 1.0, 4.0) + Math.pow(t - 1.0, 2.0) + 1.0;
 		}
 	}),
 	INOUT_BACK(new Function<Double, Double>(){
@@ -266,10 +266,10 @@ public enum Easing {
 			
 			if(t <= 0.5D) {
 				
-				return 16.0D * Math.pow(t - 1.0D, 4.0D) - 2.0D * Math.pow(t - 1.0D, 2.0D);
+				return 16.0 * Math.pow(t - 1.0, 4.0) - 2.0 * Math.pow(t - 1.0, 2.0);
 			}else {
 				
-				return -16.0D * Math.pow(t - 1.0D, 4.0D) + 2.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
+				return -16.0 * Math.pow(t - 1.0, 4.0) + 2.0 * Math.pow(t - 1.0, 2.0) + 1.0;
 			}
 		}
 	}),
@@ -278,7 +278,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.sin(4.5D * (t - (5.0D / 9.0D)) * Math.PI) * Math.pow(t, 4.0D) + Math.pow(t, 10.0D);
+			return Math.sin(4.5 * (t - (5.0 / 9.0)) * Math.PI) * Math.pow(t, 4.0) + Math.pow(t, 10.0);
 		}
 	}),
 	OUT_ELASTIC(new Function<Double, Double>(){
@@ -286,7 +286,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.sin(4.5D * t * Math.PI) * Math.pow(t - 1.0D, 4.0D) - Math.pow(t - 1.0D, 10.0D) + 1.0D;
+			return Math.sin(4.5 * t * Math.PI) * Math.pow(t - 1.0, 4.0) - Math.pow(t - 1.0, 10.0) + 1.0;
 		}
 	}),
 	INOUT_ELASTIC(new Function<Double, Double>(){
@@ -294,12 +294,12 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			if(t <= 0.5D) {
+			if(t <= 0.5) {
 				
-				return Math.sin(9.0D * (t - (13.0D / 18.0D)) * Math.PI) * 8.0D * Math.pow(t, 4.0D) + 512.0D * Math.pow(t, 10.0D);
+				return Math.sin(9.0 * (t - (13.0 / 18.0)) * Math.PI) * 8.0 * Math.pow(t, 4.0) + 512.0 * Math.pow(t, 10.0);
 			}else {
 				
-				return Math.sin(9 * (t - (7.0D - 18.0D)) * Math.PI) * -8.0D * Math.pow(t - 1, 4.0D) - 512.0D * Math.pow(t - 1.0D, 10.0D) + 1.0D;
+				return Math.sin(9.0 * (t - (7.0 - 18.0)) * Math.PI) * -8.0 * Math.pow(t - 1.0, 4.0) - 512.0 * Math.pow(t - 1.0, 10.0) + 1.0;
 			}
 		}
 		
