@@ -4,7 +4,8 @@ import java.util.function.Function;
 
 /*
  *    Credits:
- *    	-All of the functions are referenced from "https://easings.net".
+ *    	-Most of these functions are referenced from "https://easings.net".
+ *    	-Exceptions: INSTANT
  */
 
 public enum Easing {
