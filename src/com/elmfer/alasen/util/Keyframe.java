@@ -22,6 +22,13 @@ public class Keyframe {
 		this.timeShader = timeShaderFunc;
 	}
 	
+	public Keyframe(double fracTimeStamp, Number value, Easing easingEnum) {
+		
+		this.fracTimeStamp = fracTimeStamp;
+		this.value = value;
+		this.timeShader = easingEnum.getFunction();
+	}
+	
 	public double getFracTimeStamp() {
 		
 		return fracTimeStamp;
