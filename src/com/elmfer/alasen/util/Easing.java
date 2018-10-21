@@ -2,6 +2,11 @@ package com.elmfer.alasen.util;
 
 import java.util.function.Function;
 
+/*
+ *    Credits:
+ *    	-All of the functions are referenced from "https://easings.net".
+ */
+
 public enum Easing {
 	
 	LINEAR(new Function<Double, Double>(){
