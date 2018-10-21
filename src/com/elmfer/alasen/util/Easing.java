@@ -37,7 +37,7 @@ public enum Easing {
 		@Override
 		public Double apply(Double t) {
 			
-			return Math.sin((Math.PI * t - Math.PI) / 2.0);
+			return Math.sin((Math.PI * t - Math.PI) / 2.0) + 1.0;
 		}
 	}),
 	OUT_SINE(new Function<Double, Double>(){
