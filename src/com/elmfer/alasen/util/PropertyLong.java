@@ -31,6 +31,12 @@ public class PropertyLong extends Property{
 		value = 0L;
 	}
 	
+	public PropertyLong(String name, Long startingValue, Long endingValue, Easing easingEnum) {
+		
+		super(name, startingValue, endingValue, easingEnum.getFunction());
+		value = 0L;
+	}
+	
 	public void update(double fracTime) {
 		
 		super.update(fracTime);

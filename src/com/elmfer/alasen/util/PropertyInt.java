@@ -34,6 +34,13 @@ public class PropertyInt extends Property {
 		
 	}
 	
+	public PropertyInt(String name, Integer startingValue, Integer endingValue, Easing easingEnum) {
+		
+		super(name, startingValue, endingValue, easingEnum.getFunction());
+		value = 0;
+		
+	}
+	
 	public void update(double fracTime) {
 		
 		super.update(fracTime);

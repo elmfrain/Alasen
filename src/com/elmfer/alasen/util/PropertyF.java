@@ -31,6 +31,12 @@ public class PropertyF extends Property{
 		value = 0.0F;
 	}
 	
+	public PropertyF(String name, Float startingValue, Float endingValue, Easing easingEnum) {
+		
+		super(name, startingValue, endingValue, easingEnum.getFunction());
+		value = 0.0F;
+	}
+	
 	public void update(double fracTime) {
 		
 		super.update(fracTime);

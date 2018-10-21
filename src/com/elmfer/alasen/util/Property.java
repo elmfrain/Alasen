@@ -56,11 +56,11 @@ public abstract class Property {
 		addKeyframes(new Keyframe(0.0D, startingValue, easingFunc), new Keyframe(1.0D, endingValue));
 	}
 	
-	public Property(String name, Number startingValue, Number endingValue, Easing easingFunc) {
+	public Property(String name, Number startingValue, Number endingValue, Easing easingEnum) {
 		
 		this.name = name;
 		
-		addKeyframes(new Keyframe(0.0D, startingValue, easingFunc.getFunction()), new Keyframe(1.0D, endingValue));
+		addKeyframes(new Keyframe(0.0D, startingValue, easingEnum.getFunction()), new Keyframe(1.0D, endingValue));
 	}
 	
 	public void update(double fracTime) {

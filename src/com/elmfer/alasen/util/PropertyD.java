@@ -31,6 +31,12 @@ public class PropertyD extends Property{
 		value = 0.0D;
 	}
 	
+	public PropertyD(String name, Double startingValue, Double endingValue, Easing easingEnum) {
+		
+		super(name, startingValue, endingValue, easingEnum.getFunction());
+		value = 0.0D;
+	}
+	
 	public void update(double fracTime) {
 		
 		super.update(fracTime);
