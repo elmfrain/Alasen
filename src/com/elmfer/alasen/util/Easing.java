@@ -18,6 +18,20 @@ public enum Easing {
 			return t;
 		}
 	}),
+	INSTANT(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t < 1.0) {
+				
+				return 0.0;
+			}else {
+				
+				return 1.0;
+			}
+		}
+	}),
 	IN_SINE(new Function<Double, Double>(){
 
 		@Override
