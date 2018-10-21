@@ -272,6 +272,37 @@ public enum Easing {
 				return -16.0D * Math.pow(t - 1.0D, 4.0D) + 2.0D * Math.pow(t - 1.0D, 2.0D) + 1.0D;
 			}
 		}
+	}),
+	IN_ELASTIC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.sin(4.5D * (t - (5.0D / 9.0D)) * Math.PI) * Math.pow(t, 4.0D) + Math.pow(t, 10.0D);
+		}
+	}),
+	OUT_ELASTIC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			return Math.sin(4.5D * t * Math.PI) * Math.pow(t - 1.0D, 4.0D) - Math.pow(t - 1.0D, 10.0D) + 1.0D;
+		}
+	}),
+	INOUT_ELASTIC(new Function<Double, Double>(){
+
+		@Override
+		public Double apply(Double t) {
+			
+			if(t <= 0.5D) {
+				
+				return Math.sin(9.0D * (t - (13.0D / 18.0D)) * Math.PI) * 8.0D * Math.pow(t, 4.0D) + 512.0D * Math.pow(t, 10.0D);
+			}else {
+				
+				return Math.sin(9 * (t - (7.0D - 18.0D)) * Math.PI) * -8.0D * Math.pow(t - 1, 4.0D) - 512.0D * Math.pow(t - 1.0D, 10.0D) + 1.0D;
+			}
+		}
+		
 	});
 	
 	private final Function<Double, Double> function;
