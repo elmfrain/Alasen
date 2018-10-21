@@ -355,16 +355,16 @@ public enum Easing {
 			
 			if(t <= 0.35) {
 				
-				return m * (t + 0.35) * (t - 0.35);
+				return m * (t + 0.35) * (t - 0.35) + 1.0;
 			}else if(t <= 0.7) {
 				
-				return m * (t - 0.35) * (t - 0.7);
+				return m * (t - 0.35) * (t - 0.7) + 1.0;
 			}else if(t <= 0.9) {
 				
-				return m * (t - 0.7) * (t - 0.9);
+				return m * (t - 0.7) * (t - 0.9) + 1.0;
 			}else {
 				
-				return m * (t - 0.9) * (t - 1.0);
+				return m * (t - 0.9) * (t - 1.0) + 1.0;
 			}
 		}
 	}),
@@ -375,12 +375,12 @@ public enum Easing {
 			
 			final double m = (800.0 / 49.0);
 			
-			if(t <= 0.5) {
+			if(t <= 0.05) {
 				
-				return -m * t * (t - 0.5);
+				return -m * t * (t - 0.05);
 			}else if(t <= 0.15) {
 				
-				return -m * (t - 0.5) * (t - 0.15);
+				return -m * (t - 0.05) * (t - 0.15);
 			}else if(t <= 0.325) {
 				
 				return -m * (t - 0.15) * (t - 0.325);
