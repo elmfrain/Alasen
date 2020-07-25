@@ -5,24 +5,24 @@ import java.util.function.Function;
 public class Keyframe {
 	
 	private final Function<Double, Double> timeShader;
-	private final Number value;
+	private final double value;
 	private final double fracTimeStamp;
 	
-	public Keyframe(double fracTimeStamp, Number value) {
+	public Keyframe(double fracTimeStamp, double value) {
 		
 		this.fracTimeStamp = fracTimeStamp;
 		this.value = value;
 		this.timeShader = Easing.getDefault().getFunction();
 	}
 	
-	public Keyframe(double fracTimeStamp, Number value, Function<Double, Double> easingFunc) {
+	public Keyframe(double fracTimeStamp, double value, Function<Double, Double> easingFunc) {
 		
 		this.fracTimeStamp = fracTimeStamp;
 		this.value = value;
 		this.timeShader = easingFunc;
 	}
 	
-	public Keyframe(double fracTimeStamp, Number value, Easing easingEnum) {
+	public Keyframe(double fracTimeStamp, double value, Easing easingEnum) {
 		
 		this.fracTimeStamp = fracTimeStamp;
 		this.value = value;
@@ -39,7 +39,7 @@ public class Keyframe {
 		return timeShader;
 	}
 	
-	public Number getValue() {
+	public double getValue() {
 		
 		return value;
 	}

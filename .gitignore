@@ -1,4 +1,5 @@
 /bin/
-
+/exports/
+Start.java
 *.classpath
 *.project

@@ -10,7 +10,7 @@ public class Timeline {
 	private final double duration;
 	private final String name;
 	
-	private TimelineState timelineState;
+	private State timelineState;
 	private double currentFracTime;
 	private double speed;
 	private long currentTickTime;
@@ -20,7 +20,7 @@ public class Timeline {
 	
 	public Timeline(String name, double duration) {
 		
-		timelineState = TimelineState.FORWARD;
+		timelineState = State.FORWARD;
 		paused = false;
 		stopped = true;
 		
@@ -38,7 +38,7 @@ public class Timeline {
 	
 	public Timeline(double duration) {
 		
-		timelineState = TimelineState.FORWARD;
+		timelineState = State.FORWARD;
 		paused = false;
 		stopped = true;
 		
@@ -108,13 +108,12 @@ public class Timeline {
 			currentFracTime = 1.0D;
 		}
 		
-		//Update All properties
-		for(Property property : propertyList.values()) {
-			
-			property.update(currentFracTime);
-		}
-		
 		prevTickTime = currentTickTime;
+	}
+	
+	public double getDuration() {
+		
+		return duration;
 	}
 	
 	public Property getProperty(String propName) {
@@ -132,7 +131,7 @@ public class Timeline {
 		return name;
 	}
 	
-	public TimelineState getState() {
+	public State getState() {
 		
 		return timelineState;
 	}
@@ -140,6 +139,17 @@ public class Timeline {
 	public double getFracTime() {
 		
 		return currentFracTime;
+	}
+	
+	public void setFracTime(double fracTime) {
+		
+		currentFracTime = Math.min(1.0, Math.max(fracTime, 0.0));
+	}
+	
+	public void setTimePos(double timePos) {
+		
+		double d = timePos / duration;
+		currentFracTime = Math.min(1.0, Math.max(d, 0.0));
 	}
 	
 	public double getTimePos() {
@@ -166,7 +176,7 @@ public class Timeline {
 		
 		for(Property prop : properties) {
 			
-			prop.update(currentFracTime);
+			prop.host = this;
 			propertyList.put(prop.getName() , prop);
 		}
 	}
@@ -175,7 +185,7 @@ public class Timeline {
 		
 		for(Property prop : properties) {
 			
-			prop.update(currentFracTime);
+			prop.host = this;
 			propertyList.put(prop.getName() , prop);
 		}
 	}
@@ -190,7 +200,7 @@ public class Timeline {
 		paused = false;
 		stopped = false;
 		
-		timelineState = TimelineState.FORWARD;
+		timelineState = State.FORWARD;
 	}
 	
 	public void rewind() {
@@ -198,7 +208,7 @@ public class Timeline {
 		paused = false;
 		stopped = false;
 		
-		timelineState = TimelineState.REVERSE;
+		timelineState = State.REVERSE;
 	}
 	
 	public void pause() {
@@ -224,6 +234,7 @@ public class Timeline {
 		return propertyList;
 	}
 	
+	@Override
 	protected Timeline clone() {
 		
 		Timeline timeline = new Timeline(this);
@@ -235,4 +246,8 @@ public class Timeline {
 		
 	}
 	
+	public static enum State
+	{
+		FORWARD, REVERSE;
+	}
 }

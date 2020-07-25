@@ -6,15 +6,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 
-public abstract class Property {
+public class Property {
 	
 	protected final List<Keyframe> keyframeList = new ArrayList<Keyframe>();
 	private final String name;
 	
-	protected Keyframe currentKeyframe = new Keyframe(0.0D, null);
-	protected Keyframe nextKeyframe = new Keyframe(1.0D, null);
+	protected Keyframe currentKeyframe = new Keyframe(0.0D, 0.0D);
+	protected Keyframe nextKeyframe = new Keyframe(1.0D, 0.0D);
+	protected Timeline host = null;
 	
-	private Number value;
+	private double value;
 	
 	private static final Comparator<Keyframe> compare = new Comparator<Keyframe>() {
 
@@ -34,14 +35,14 @@ public abstract class Property {
 		this.name = name;
 	}
 	
-	public Property(String name, Number value) {
+	public Property(String name, double value) {
 		
 		this.name = name;
 		
 		addKeyframes(new Keyframe(0.5D, value));
 	}
 	
-	public Property(String name, Number startingValue, Number endingValue) {
+	public Property(String name, double startingValue, double endingValue) {
 		
 		this.name = name;
 		
@@ -49,14 +50,14 @@ public abstract class Property {
 		
 	}
 	
-	public Property(String name, Number startingValue, Number endingValue, Function<Double, Double> easingFunc) {
+	public Property(String name, double startingValue, double endingValue, Function<Double, Double> easingFunc) {
 		
 		this.name = name;
 		
 		addKeyframes(new Keyframe(0.0D, startingValue, easingFunc), new Keyframe(1.0D, endingValue));
 	}
 	
-	public Property(String name, Number startingValue, Number endingValue, Easing easingEnum) {
+	public Property(String name, double startingValue, double endingValue, Easing easingEnum) {
 		
 		this.name = name;
 		
@@ -73,7 +74,20 @@ public abstract class Property {
 		getKeyframes(fracTime);
 	}
 	
-	public Number getValue() {
+	public double getValue() {
+		
+		if(host != null)
+			update(host.getFracTime());
+		else
+			update(0.0);
+		
+		double k2v = (double) nextKeyframe.getValue();
+		double k1v = (double) currentKeyframe.getValue();
+		double k2t = nextKeyframe.getFracTimeStamp();
+		double k1t = currentKeyframe.getFracTimeStamp();
+		
+		double partialFracTime = (host.getFracTime() - k1t) / (k2t - k1t);
+		value = (double) ((k2v - k1v) * currentKeyframe.getValueShader().apply(partialFracTime) + k1v);
 		
 		return value;
 	}
@@ -103,11 +117,6 @@ public abstract class Property {
 		sortKeyframes();
 	}
 	
-	public static void showTypeError(Property property) {
-		
-		System.out.println("[!Alasen-Error!] : " + property + " ,keyframe value must be the same type as the property type!");
-	}
-	
 	private void getKeyframes(double fracTime) {
 		
 		if(!keyframeList.isEmpty()) {
@@ -131,13 +140,12 @@ public abstract class Property {
 					break;
 				}else {
 					
-					currentKeyframe = new Keyframe(0.0D, null);
-					nextKeyframe = new Keyframe(1.0D, null);
+					currentKeyframe = new Keyframe(0.0D, 0.0D);
+					nextKeyframe = new Keyframe(1.0D, 0.0D);
 				}
 				
 			}
 		}
-		
 	}
 	
 	private void validateKeyframe(Keyframe keyframe) {
